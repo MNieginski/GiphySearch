@@ -1,50 +1,60 @@
-import {useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 
 const GifId = (props) => {
 
-    const {id} = useParams()
+    const { id } = useParams()
 
     const apiKey = "Na7X1jSoGMTdbT3KDOgN2lQXyNRBALP2"
 
     const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${apiKey}`
 
     const [gif, setGif] = useState(null)
+    const [load, setLoad] = useState(true)
 
     const getGif = async () => {
         try {
-            const response = await fetch(url)
-            const gifData = response.json()
+            const response = await fetch(`https://api.giphy.com/v1/gifs/${id}?api_key=${apiKey}`)
+            const gifData = await response.json()
             console.log(gifData)
-            setGif(gifData)
+            console.log(response)
+            setGif(gifData.data)
+            setLoad(false)
 
-        } catch (err){
+        } catch (err) {
             console.log(err)
         }
     }
 
-    useEffect (() => {
+    useEffect(() => {
         getGif()
-    }, [])
+    }, [load])
 
     const loaded = () => {
         console.log(gif);
         return (
-          <div>
-          </div>
+            <div>
+                <h1>Gif Details: </h1>
+                <img key={gif.id}
+                    src={gif.images.original.url} />
+                <h2>{gif.title}</h2>
+                <h3> This Gif was trending on: {gif.trending_datetime}</h3>
+                <h4>This Gif is rated: {gif.rating}</h4>
+                <p>Frames: {gif.images.original.frames}-fps</p>
+                <p>Height: {gif.images.original.height}px</p>
+                <p>width: {gif.images.original.width}px</p>
+            </div>
         );
-      };
-    
-      const loading = () => {
+    };
+
+    const loading = () => {
         return (<h1>Loading...</h1>);
-      };
+    };
 
     return (
         <section>
             {gif ? loaded() : loading()}
-            <div>
-                <h2>{gif.title}</h2>
-            </div>
+
         </section>
     )
 }
