@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react"
+import { Link } from 'react-router-dom'
 
 function GiphyMain(props) {
     const [gifs, setGifs] = useState([])
@@ -24,15 +25,21 @@ function GiphyMain(props) {
         }
     }
 
-    const renderGifs = gifs?.map((curGif) => <img key={curGif.id} src={curGif.images.fixed_height.url}></img>);
+    const renderGifs = gifs?.map((curGif) => (
+        <Link to={`/gifs/${curGif.id}`}>
+            <img key={curGif.id}
+                src={curGif.images.fixed_height.url}>
+            </img>
+        </Link>
+    ));
 
 
     const handleSearch = async (e) => {
         try {
             const apiKey = "Na7X1jSoGMTdbT3KDOgN2lQXyNRBALP2"
             const response = await fetch(`api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=&limit=10`)
-    
-        } 
+
+        }
 
         catch (err) {
             console.log(err)
@@ -46,7 +53,13 @@ function GiphyMain(props) {
         fetchGifs()
     }, [])
 
-    const renderResults = results?.map((r) => <img key={r.id} src={r.images.fixed_height.url}></img>)
+    const renderResults = results?.map((r) => (
+        <Link to={`/gifs/${r.id}`}>
+            <img key={r.id}
+                src={r.images.fixed_height.url}>
+            </img>
+        </Link>
+    ))
 
 
     const loaded = () => {
