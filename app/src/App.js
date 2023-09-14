@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Link } from "react-router-dom";
 
 
 // Pages
@@ -36,7 +36,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Welcome to my Giphy API app!</h1>
+      <Link to="/"><h1>Welcome to my Giphy API app!</h1></Link>
       <h2>You can search for specific gifs, and clicking one will give you more information!</h2>
       <form>
         <input type="text" value={query} onChange={handleChange} />
