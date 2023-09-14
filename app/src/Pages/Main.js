@@ -2,13 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react"
 import { Link } from 'react-router-dom'
 
-function GiphyMain(props) {
-    const [gifs, setGifs] = useState([])
+function GiphyMain({ handleChange, handleSearch, query }) {
     const [isLoading, setIsLoading] = useState(true)
 
+    const [initialGifs, setInitialGifs] = useState(null)
 
-    const [query, setQuery] = useState("")
-    const [results, setResults] = useState(null)
 
     const fetchGifs = async () => {
         try {
@@ -16,7 +14,8 @@ function GiphyMain(props) {
             const response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=20`)
             const gifData = await response.json()
             console.log(gifData)
-            setResults(gifData.data)
+            setInitialGifs(gifData.data)
+            setIsLoading(false)
         }
 
 
@@ -25,7 +24,7 @@ function GiphyMain(props) {
         }
     }
 
-    const renderGifs = gifs?.map((curGif) => (
+    const renderGifs = initialGifs?.map((curGif) => (
         <Link to={`/gifs/${curGif.id}`} key={curGif.id}>
             <img key={curGif.id} className="gif"
                 src={curGif.images.fixed_height.url}>
@@ -34,38 +33,21 @@ function GiphyMain(props) {
     ));
 
 
-    const handleSearch = async (e) => {
-        try {
-            const apiKey = "Na7X1jSoGMTdbT3KDOgN2lQXyNRBALP2"
-            const response = await fetch(`api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=&limit=10`)
-
-        }
-
-        catch (err) {
-            console.log(err)
-        }
-    }
-    const handleChange = (e) => {
-        setQuery(e.target.value)
-    }
-
     useEffect(() => {
         fetchGifs()
-    }, [])
-
-    const renderResults = results?.map((r) => (
-        <Link to={`/gifs/${r.id}`} key={r.id}>
-            <img key={r.id} className="gif" 
-                src={r.images.fixed_height.url}>
-            </img>
-        </Link>
-    ))
+    }, [isLoading])
 
 
     const loaded = () => {
         return (
             <div>
-                <h1>Loaded!</h1>
+                {/* <h1>Welcome to my Giphy API app!</h1>
+                <h2>You can search for specific gifs, and clicking one will give you more information!</h2>
+                <form>
+                    <input type="text" value={query} onChange={handleChange} />
+                    <button type="submit" onClick={handleSearch}>Search</button>
+                </form> */}
+                <section>{renderGifs}</section>
             </div>
         )
     }
@@ -79,13 +61,6 @@ function GiphyMain(props) {
     return (
         <div>
             <section>{isLoading ? loading() : loaded()}</section>
-            <h1>Welcome to my Giphy API app!</h1>
-            <h2>You can search for specific gifs, and clicking one will give you more information!</h2>
-            <form>
-                <input type="text" value={query} onChange={handleChange} />
-                <button type="submit" onClick={handleSearch}>Search</button>
-            </form>
-            <section>{results ? renderResults : renderGifs}</section>
         </div>
     )
 }
