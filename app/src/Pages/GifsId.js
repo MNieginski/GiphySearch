@@ -5,16 +5,14 @@ const GifId = (props) => {
 
     const { id } = useParams()
 
-    const apiKey = "Na7X1jSoGMTdbT3KDOgN2lQXyNRBALP2"
-
-    const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${apiKey}`
+    const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${process.env.REACT_APP_API_KEY}`
 
     const [gif, setGif] = useState(null)
     const [load, setLoad] = useState(true)
 
     const getGif = async () => {
         try {
-            const response = await fetch(`https://api.giphy.com/v1/gifs/${id}?api_key=${apiKey}`)
+            const response = await fetch(`https://api.giphy.com/v1/gifs/${id}?api_key=${process.env.REACT_APP_API_KEY}`)
             const gifData = await response.json()
             console.log(gifData)
             console.log(response)
