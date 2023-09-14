@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 
 function Results({results}) {
 
     const renderResults = results?.map((curGif) => (
         <Link to={`/gifs/${curGif.id}`} key={curGif.id}>
-            <img key={curGif.id} className="gif"
+            <img key={curGif.id} className="gif" alt=""
                 src={curGif.images.fixed_height.url}>
             </img>
         </Link>

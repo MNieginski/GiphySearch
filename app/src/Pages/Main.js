@@ -25,7 +25,7 @@ function GiphyMain({ handleChange, handleSearch, query }) {
 
     const renderGifs = initialGifs?.map((curGif) => (
         <Link to={`/gifs/${curGif.id}`} key={curGif.id}>
-            <img key={curGif.id} className="gif"
+            <img key={curGif.id} className="gif" alt=""
                 src={curGif.images.fixed_height.url}>
             </img>
         </Link>

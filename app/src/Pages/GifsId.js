@@ -5,8 +5,6 @@ const GifId = (props) => {
 
     const { id } = useParams()
 
-    const url = `https://api.giphy.com/v1/gifs/${id}?api_key=${process.env.REACT_APP_API_KEY}`
-
     const [gif, setGif] = useState(null)
     const [load, setLoad] = useState(true)
 
@@ -33,7 +31,7 @@ const GifId = (props) => {
         return (
             <div>
                 <h1>Gif Details: </h1>
-                <img key={gif.id}
+                <img key={gif.id} alt=""
                     src={gif.images.original.url} />
                 <h2>{gif.title}</h2>
                 <h3> This Gif was trending on: {gif.trending_datetime}</h3>

@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 
 
@@ -15,8 +15,8 @@ function App() {
 
   const handleSearch = async (e) => {
     e.preventDefault()
+
     try {
-      const apiKey = "Na7X1jSoGMTdbT3KDOgN2lQXyNRBALP2"
       const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${process.env.REACT_APP_API_KEY}&q=${query}&limit=20`)
       const searchData = await response.json()
       console.log(searchData)
