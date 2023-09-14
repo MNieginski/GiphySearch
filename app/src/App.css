@@ -13,3 +13,29 @@ body {
   position: relative;
 }
 
+/* .searchField{
+  float: left;
+    width: 100%;
+    box-sizing: border-box;
+    border-right: 1px solid #eee;
+    height: 50px;
+    position: relative;
+}
+
+main-search-button{
+
+  background: #4DB7FE;
+}
+
+.searchButton {
+position: absolute;
+right: 0px;
+height: 50px;
+width: 120px;
+color: #fff;
+top: 0;
+border: none;
+border-top-right-radius: 0px;
+border-bottom-right-radius: 0px;
+cursor: pointer;
+} */

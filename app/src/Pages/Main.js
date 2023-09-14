@@ -10,7 +10,7 @@ function GiphyMain({ handleChange, handleSearch, query }) {
 
     const fetchGifs = async () => {
         try {
-            const response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${process.env.REACT_APP_API_KEY}&limit=20`)
+            const response = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${process.env.REACT_APP_API_KEY}&limit=30`)
             const gifData = await response.json()
             console.log(gifData)
             setInitialGifs(gifData.data)

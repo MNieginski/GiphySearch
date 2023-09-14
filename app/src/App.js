@@ -17,7 +17,7 @@ function App() {
     e.preventDefault()
 
     try {
-      const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${process.env.REACT_APP_API_KEY}&q=${query}&limit=20`)
+      const response = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${process.env.REACT_APP_API_KEY}&q=${query}&limit=30`)
       const searchData = await response.json()
       console.log(searchData)
       console.log(response)
@@ -38,9 +38,9 @@ function App() {
     <div className="App">
       <Link to="/"><h1>Welcome to my Giphy API app!</h1></Link>
       <h2>You can search for specific gifs, and clicking one will give you more information!</h2>
-      <form>
-        <input type="text" value={query} onChange={handleChange} />
-        <button type="submit" onClick={handleSearch}>Search</button>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="" placeholder='Search Gifs' type="text" value={query} onChange={handleChange} />
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={handleSearch}>Search</button>
       </form>
       <Routes>
         <Route path="/" element={<GiphyMain handleChange={handleChange} handleSearch={handleSearch} query={query} />} />
