@@ -1,8 +1,11 @@
 # GiphySearch
-This app's purpose is to implement a Giphy Api, allowing users to see the trending page (home/main), search for gifs (results), or click and view details about any gif(details)
+This app's purpose is to implement a Giphy Api, allowing users to explore their database
 
 # Features
-This app will have full CRUD functionality, of Days that you are tracking, and applying what you ate, and the nutrition facts
+Trending page (home/main) 
+Search for gifs (results) 
+or
+Click and view details about any gif(details)
 
 # Technologies
 HTML
